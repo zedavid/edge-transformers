@@ -41,6 +41,7 @@ dirs = "4.0.0"
 tokio = "1.24.1"
 ndarray = "0.15"
 half = "2.1"
+log = "0.4.17"
 
 [features]
 default = ["download-binaries", "generate-csharp", "generate-c"]
