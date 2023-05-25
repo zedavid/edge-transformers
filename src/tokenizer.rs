@@ -62,7 +62,7 @@ impl AutoTokenizer {
 
         if let None = tok.get_padding() {
             tok.with_padding(Option::from(PaddingParams {
-                strategy: PaddingStrategy::BatchLongest,
+                strategy: PaddingStrategy::Fixed(512),
                 direction: PaddingDirection::Right,
                 pad_to_multiple_of: None,
                 pad_id: pad_token_id,
