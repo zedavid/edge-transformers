@@ -3,7 +3,7 @@ use std::str::FromStr;
 
 use serde_json::Value;
 use tokenizers::tokenizer::Tokenizer;
-use tokenizers::{PaddingDirection, PaddingParams, PaddingStrategy};
+use tokenizers::{PaddingDirection, PaddingParams, PaddingStrategy, TruncationParams, TruncationStrategy};
 
 use crate::error::{Error, Result};
 
@@ -70,6 +70,16 @@ impl AutoTokenizer {
                 pad_token: pad_token.clone(),
             }));
         }
+
+        if let None = tok.get_truncation() {
+            tok.with_truncation( Option::from( TruncationParams {
+                direction: Default::default(),
+                max_length: 512,
+                strategy: TruncationStrategy::LongestFirst,
+                stride: 0,
+            }));
+        }
+
         Ok(AutoTokenizer {
             tokenizer: tok,
             eos_token,
