@@ -80,6 +80,8 @@ impl AutoTokenizer {
             }));
         }
 
+        println!(tok.get_truncation());
+
         Ok(AutoTokenizer {
             tokenizer: tok,
             eos_token,
