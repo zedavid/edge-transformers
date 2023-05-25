@@ -6,6 +6,7 @@ use tokenizers::tokenizer::Tokenizer;
 use tokenizers::{PaddingDirection, PaddingParams, PaddingStrategy, TruncationParams, TruncationStrategy};
 
 use crate::error::{Error, Result};
+use log::debug;
 
 /// A simple tokenizer wrapper that reads special token map for further use in the pipeline.
 pub struct AutoTokenizer {
@@ -80,7 +81,7 @@ impl AutoTokenizer {
             }));
         }
 
-        println!(tok.get_truncation());
+        debug!("{}", tok.get_truncation().unwrap().max_length);
 
         Ok(AutoTokenizer {
             tokenizer: tok,
